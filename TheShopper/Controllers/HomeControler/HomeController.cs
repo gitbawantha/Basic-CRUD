@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using TheShopper.Models;
 
-namespace TheShopper.Controllers
+namespace TheShopper.Controllers.Home
 {
     public class HomeController : Controller
     {

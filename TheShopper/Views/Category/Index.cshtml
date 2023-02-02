@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index Category</h1>
+
+<table class="table table boarderd table-striped" style="width : 100%">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Display Order</th>
+            <th>Created Date & Time</th>
+
+        </tr>
+    </thead>
+    <tbody>  @*Lop Actual values*@
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    @obj.Name
+                </td>
+                <td>
+                    @obj.DisplayOrder
+                </td>
+                <td>
+                    @obj.CreatedDate
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
