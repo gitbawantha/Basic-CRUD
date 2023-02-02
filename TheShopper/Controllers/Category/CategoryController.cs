@@ -18,5 +18,55 @@ namespace TheShopper.Controllers
             IEnumerable<Category> objCategoryList = _db.Categories;
             return View(objCategoryList);
         }
+
+        //GET 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        //Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category obj)
+        {
+            //if (obj.name == obj.displayOrder.ToString())
+            //{
+            //	ModelState.AddModelError("name", "DisplayOrder Cannot Extracly match name");
+            //}
+
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+
+        // GET
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        //Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Category obj)
+        {
+            //if (obj.name == obj.displayOrder.ToString())
+            //{
+            //	ModelState.AddModelError("name", "DisplayOrder Cannot Extracly match name");
+            //}
+
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
     }
 }
