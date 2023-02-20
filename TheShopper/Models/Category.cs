@@ -10,7 +10,7 @@ namespace TheShopper.Models
 
         [Required]
         [DisplayName("Category Name")]
-        [Range(1,100)]
+        //[Range(1,100)]
         public string Name { get; set; }
 
         [Required]

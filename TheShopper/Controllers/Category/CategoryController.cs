@@ -44,10 +44,23 @@ namespace TheShopper.Controllers
             return View(obj);
         }
 
-        // GET
-        public IActionResult Edit()
+        //GET 
+        public IActionResult Edit(int? id)
         {
-            return View();
+            if (id == null || id == 0) 
+            {
+                return NotFound();
+            }
+
+            var categoryFromDb = _db.Categories.Find (id);
+           // var categoryFromDb = _db.Categories.FirstOrDefault(u => u.CategoryId == id);
+            //var categoryFromDb = _db.Categories.SingleOrDefault(u => u.CategoryId == id);
+
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(categoryFromDb);
         }
 
         //Post
@@ -55,14 +68,14 @@ namespace TheShopper.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Category obj)
         {
-            //if (obj.name == obj.displayOrder.ToString())
-            //{
-            //	ModelState.AddModelError("name", "DisplayOrder Cannot Extracly match name");
-            //}
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "DisplayOrder Cannot Extracly match name");
+            }
 
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
+                _db.Categories.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
