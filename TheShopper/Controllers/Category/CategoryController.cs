@@ -101,9 +101,9 @@ namespace TheShopper.Controllers
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id)          
+        public IActionResult DeletePOST(int? CategoryId)          
         {
-            var obj = _db.Categories.Find (id);
+            var obj = _db.Categories.Find (CategoryId);
             if (obj == null)
             {
                 return NotFound();
