@@ -30,16 +30,17 @@ namespace TheShopper.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
-            //if (obj.name == obj.displayOrder.ToString())
-            //{
-            //	ModelState.AddModelError("name", "DisplayOrder Cannot Extracly match name");
-            //}
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "DisplayOrder Cannot Extracly match name");
+            }
 
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+				TempData["Success"] = "Success Fully Crated";
+				return RedirectToAction("Index");               
             }
             return View(obj);
         }
